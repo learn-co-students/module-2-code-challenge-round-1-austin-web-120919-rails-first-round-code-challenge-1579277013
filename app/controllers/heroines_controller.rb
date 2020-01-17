@@ -14,7 +14,7 @@ class HeroinesController < ApplicationController
   end
 
   def create
-    @heroine = Heroine.new(heroine_params(:super_name, :name, :power_id))
+    @heroine = Heroine.new(heroine_params(:super_name, :name, heroine_powers_attributes: [:power_id]))
     if @heroine.valid?
       @heroine.save
       redirect_to heroine_path(@heroine)
