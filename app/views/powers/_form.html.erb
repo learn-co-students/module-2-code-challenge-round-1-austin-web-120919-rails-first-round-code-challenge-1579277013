@@ -1,0 +1,19 @@
+<%= form_for @power do |f| %>
+<%= f.label 'Name: '%><br>
+<%= f.text_field :name %><br>
+<%= f.label 'Description: '%><br>
+<%= f.text_area :description %><br>
+<%= f.label 'Current Heroines: '%><br>
+    <ul>
+    <% @power.heroine_powers.each do |heroine_power| %>
+        <% heroine = Heroine.find(heroine_power.id) %>
+        <li><%= heroine.name %></li>
+    <% end %>
+    </ul>
+<%= f.label 'New Heroine: '%><br>
+    <% Heroine.all.each do |heroine| %>
+        <%= check_box_tag "power[heroine_ids][]",heroine.id %> <%= heroine.name %> <br>
+    <% end %>
+
+<%= f.submit %>
+<% end %>

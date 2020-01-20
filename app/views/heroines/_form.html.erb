@@ -1,15 +1,17 @@
 <%= form_for @heroine do |f| %>
-    <%= f.label 'Name: '%>
-    <%= f.text_field :name %>
+    <%= f.label 'Name: '%><br>
+    <%= f.text_field :name %><br>
     <%= f.label 'Super Name: '%>
-    <%= f.text_field :super_name %>
-    <%= f.label 'Powers: '%>
-    <%# #<%= f.collection_select(:powers, @powers, :id, :name) %>
-    <%= f.fields_for :powers do |ff| %>
-        <%= ff.collection_check_boxes(:powers, @powers, :id, :name %>
+    <%= f.text_field :super_name %><br>
+    <p>
+    <%= f.label 'Powers: '%> <br>
+    <% Power.all.each do |power| %>
+        <%= check_box_tag "heroine[power_ids][]",power.id %> <%= power.name %> <br>
     <% end %>
-
+    </p>
+    
     <%= f.submit %>
 <% end %>
+
                 
 

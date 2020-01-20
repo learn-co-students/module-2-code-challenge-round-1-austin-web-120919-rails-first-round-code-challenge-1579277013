@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20200117161824) do
     t.integer "power_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["heroine_id"], name: "index_heroine_powers_on_heroine_id"
+    t.index ["power_id"], name: "index_heroine_powers_on_power_id"
   end
 
   create_table "heroines", force: :cascade do |t|

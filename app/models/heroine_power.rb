@@ -4,4 +4,5 @@ class HeroinePower < ApplicationRecord
 
     validates :heroine_id, presence: true
     validates :power_id, presence: true
+    
 end

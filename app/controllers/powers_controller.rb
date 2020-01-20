@@ -1,5 +1,5 @@
 class PowersController < ApplicationController
-  before_action :set_power, only: [:show]
+  before_action :set_power, only: [:show, :update, :edit]
 
   def index
     @powers = Power.all
@@ -20,7 +20,20 @@ class PowersController < ApplicationController
   end
 
   def show
-  end 
+  end
+
+  def edit
+  end
+
+  def update
+    @power.update(power_params(:name,:description))
+    @heroine_ids = params[:power][:heroine_ids]
+    if @heroine_ids.any?
+      @power.heroine_powers.clear
+      @heroine_ids.each {|heroine_id| HeroinePower.create(power_id: @power.id, heroine_id: heroine_id)}
+    end
+    redirect_to (@power)
+  end
 
   private
 

@@ -1,3 +1,5 @@
+require 'pry'
+
 class HeroinesController < ApplicationController
   before_action :set_heroine, only: [:show]
   
@@ -7,15 +9,13 @@ class HeroinesController < ApplicationController
 
   def new
     @heroine = Heroine.new
-    @powers = Power.all
   end
 
   def create
-    @heroine = Heroine.new(heroine_params(:name))
+    @heroine = Heroine.new(heroine_params(:name,:super_name))
+    @power_ids = params[:heroine][:power_ids]
     if @heroine.save
-      powers = Power.find(id: params[:powers])
-      powers.each {|power| @heroine.powers << power}
-      @heroine.heroine_powers << @power
+      @power_ids.each {|power| @heroine.heroine_powers.build(power_id: power).save}
       redirect_to heroine_path(@heroine)
     else
       render :new
