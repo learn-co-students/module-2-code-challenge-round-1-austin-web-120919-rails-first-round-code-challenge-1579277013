@@ -13,7 +13,8 @@ class HeroinesController < ApplicationController
     @heroine = Heroine.new
   end
 
-  def create
+  def
+    # can be shortened to @heroine = Heroine.create(heroine_params)
     @heroine = Heroine.new(heroine_params(:super_name, :name, heroine_powers_attributes: [:power_id]))
     if @heroine.valid?
       @heroine.save
@@ -29,6 +30,7 @@ class HeroinesController < ApplicationController
     @heroine = Heroine.find(params[:id])
   end
 
+  # be explicit about the permitted params 
   def heroine_params(*args)
     params.require(:heroine).permit(*args)
   end
