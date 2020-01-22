@@ -1,5 +1,5 @@
 <h1>Create a new Heroine!</h1>
 
 <p><font color='red'><%= @heroine.errors.full_messages.first if @heroine.errors.any? %> </font></p>
-
+#errors should go on the form partial in case we want to reuse the form for an edit. 
 <%= render 'form' %>

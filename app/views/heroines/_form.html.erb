@@ -9,9 +9,7 @@
         <%= check_box_tag "heroine[power_ids][]",power.id %> <%= power.name %> <br>
     <% end %>
     </p>
-    
+
+    # the power can be selected using an f.collection_select :power_ids, Power.all, :id, :name 
     <%= f.submit %>
 <% end %>
-
-                
-

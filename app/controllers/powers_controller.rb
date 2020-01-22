@@ -39,8 +39,10 @@ class PowersController < ApplicationController
 
   def set_power
     @power = Power.find(params[:id])
-  end 
+  end
 
+  #explictly setting the keys prevents accidentally trying to persist keys without column names
+  # heroine_ids can be set like => heroine_ids: [] 
   def power_params(*args)
     params.require(:power).permit(*args)
   end

@@ -4,6 +4,7 @@
   <% @heroines.each do |heroine| %>
     <li>
       <%= link_to heroine.super_name, heroine_path(heroine) %>
+      #alternatively, the second arg for link_to can be just the object and it will introspect to find the url
     </li>
     <br>
   <% end %>
